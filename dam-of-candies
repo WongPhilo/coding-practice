@@ -1,0 +1,21 @@
+class Solution 
+{ 
+	static int maxCandy(int height[], int n) 
+	{ 
+	    int save = 0;
+        int l = 0;
+        int r = n - 1;
+        while (l < r) {
+            int candiesstored = ((r - l - 1) * Math.min(height[l], height[r]));
+            if (candiesstored > save) {
+                save = candiesstored;
+            }
+            if (height[l] < height[r]) {
+                l++;
+            } else {
+                r--;
+            }
+        }
+        return save;
+	}
+}
