@@ -1,0 +1,31 @@
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        int max = 0;
+        for (int pile : piles) {
+            if (pile > max) {
+                max = pile;
+            }
+        }
+        
+        int beg = 1;
+        int end = max;
+        while (beg < end) {
+            int mid = (beg + end) / 2;
+            if (calculateHours(piles, mid) <= h) {
+                end = mid; 
+            } else {
+                beg = mid + 1;
+            }
+        } 
+        return beg;
+    }
+    
+    public int calculateHours(int[] piles, int speed) {
+        int amount = 0;
+        for (int pile : piles) {
+            amount += (pile + speed - 1) / (speed);
+        }
+        
+        return amount;
+    }
+}
