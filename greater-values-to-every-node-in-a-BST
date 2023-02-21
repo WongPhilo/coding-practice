@@ -1,0 +1,18 @@
+class Solution{
+    
+    int sum = 0;
+    // modify the BST and return its root
+    public Node modify(Node root)
+    {
+        greater(root);
+        return root;
+    }
+    
+    public void greater(Node root) {
+        if (root == null) return;
+        greater(root.right);
+        sum += root.data;
+        root.data = sum;
+        greater(root.left);
+    }
+}
