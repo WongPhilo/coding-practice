@@ -1,0 +1,13 @@
+class Solution {
+    void clonestack(Stack<Integer> st, Stack<Integer> cloned) {
+        if (st.isEmpty()) return;
+        if (st.size() == 1) {
+            cloned.push(st.peek());
+        } else {
+            int save = st.pop();
+            clonestack(st, cloned);
+            cloned.push(save);
+            st.push(save);
+        }
+    }
+}
