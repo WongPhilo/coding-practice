@@ -1,0 +1,29 @@
+class MedianFinder {
+    PriorityQueue<Integer> l;
+    PriorityQueue<Integer> r;
+
+    public MedianFinder() {
+        l = new PriorityQueue<>(10000, Comparator.reverseOrder());
+        r = new PriorityQueue<>();
+    }
+    
+    public void addNum(int num) {
+        if (l.isEmpty() || l.peek() >= num) {
+            l.offer(num);
+        } else {
+            r.offer(num);
+        }
+        
+        if (l.size() > r.size() + 1) {
+            r.offer(l.poll());
+        } else if (r.size() > l.size()) {
+            l.offer(r.poll());
+        }
+    }
+    
+    public double findMedian() {
+        if (l.size() == r.size())
+            return (l.peek() + r.peek()) / 2.0;
+        return l.peek();
+    }
+}
