@@ -1,0 +1,23 @@
+class Solution{
+    // Problem:
+    /*
+    * input: N = 6, arr[] = {3, 34, 4, 12, 5, 2}, sum = 9
+    * output: 1 */
+    //
+
+    static Boolean isSubsetSum(int N, int arr[], int sum){
+        boolean[][] dp = new boolean[arr.length + 1][sum + 1];
+        dp[0][0] = true;
+        for (int i = 1; i <= arr.length; i++) {
+            int a = arr[i - 1];
+            for (int j = 0; j <= sum; j++) {
+                if (dp[i - 1][j]) {
+                    dp[i][j] = true;
+                } else if (j >= a && dp[i - 1][j - a]) {
+                        dp[i][j] = true;
+                } 
+            }
+        }
+        return dp[arr.length][sum];
+    }
+}
